@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap" rel="stylesheet">
+    <link href="quiz.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+</head>
+<body>
+    <h2>ENGLISH QUIZ</h2>
+    <div class="sorutablosu" id="sorutable">
+        <button id="cevapla">Ilerle</button>
+        <button id="bitir">Bitir</button><br>
+    <div id="soru-kisim">  
+    </div>
+    <div id="cevap-kisim">
+        
+        <input type="radio" id="asikki" name="secim" value=" " >
+        <label for="vehicle1" id="asecenek"></label><br>
+        <input type="radio" id="bsikki" name="secim" value=" " >
+        <label for="vehicle2"id="bsecenek"></label><br>
+        <input type="radio" id="csikki" name="secim" value=" " >
+        <label for="vehicle3" id="csecenek"></label><br>
+        <input type="radio" id="dsikki" name="secim" value=" " >
+        <label for="vehicle4" id="dsecenek"></label><br>
+    </div>
+    </div>  
+    <div id="info">
+
+    </div>
+</body>
+<script>
+    alert("Hoşgeldiniz. Sınav 10 sorudan oluşmaktadır. 10. sorudan sonra Bitir butonuna basarak sonucunuzu öğrenebilirsiniz.");
+    var sorularvecevaplari=[
+    {
+        "soru":"1.____ is her name?",
+        "cevap":"What",
+        "asikki":"Where",
+        "bsikki":"What",
+        "csikki":"How",
+        "dsikki":"When"
+    },
+    {
+        "soru":"2.____ the teacher got a camera?",
+        "cevap":"Has",
+        "asikki":"Is",
+        "bsikki":"Does",
+        "csikki":"Was",
+        "dsikki":"Has"
+    },
+    {
+        "soru":"3.You have ten books,_____",
+        "cevap":"havent you?",
+        "asikki":"arent you?",
+        "bsikki":"dont you?",
+        "csikki":"havent you?",
+        "dsikki":"hasnt you?"  
+    },
+    {
+        "soru":"4.Are you in the restaurant?Yes,_____",
+        "cevap":"I am",
+        "asikki":"I am not",
+        "bsikki":"I have",
+        "csikki":"I dont",
+        "dsikki":"I am"   
+    },
+    {
+        "soru":"5.What is Yeşil in English? It is ____ ",
+        "cevap":"green",
+        "asikki":"brown",
+        "bsikki":"red",
+        "csikki":"blue",
+        "dsikki":"green"
+    },
+    {
+        "soru":"6.____ the children in the park?",
+        "cevap":"Are",
+        "asikki":"Is",
+        "bsikki":"Has",
+        "csikki":"Are",
+        "dsikki":"Have"
+    },
+    {
+        "soru":"7.____ Ankara cold?",
+        "cevap":"Is",
+        "asikki":"Are",
+        "bsikki":"Has",
+        "csikki":"Does",
+        "dsikki":"Is"
+    },
+    {
+        
+        "soru":"8.How old is Emrah? _____ ten.",
+        "cevap":"He is",
+        "asikki":"She does",
+        "bsikki":"He is",
+        "csikki":"It was",
+        "dsikki":"He has"
+    },
+    {
+        "soru":"9.Fine,thanks and you?",
+        "cevap":"How are you?",
+        "asikki":"Where are you?",
+        "bsikki":"Who are you?",
+        "csikki":"How old are you?",
+        "dsikki":"How are you?"
+    },
+    {
+        "soru":"10.Hello!____ 220 27 85?",
+        "cevap":"Is this",
+        "asikki":"Is this",
+        "bsikki":"Are they",
+        "csikki":"Is it",
+        "dsikki":"Has she"
+    }   
+    ];
+    var secenek1 = document.getElementById("asecenek");
+    var secenek2 = document.getElementById("bsecenek");
+    var secenek3 = document.getElementById("csecenek");
+    var secenek4 = document.getElementById("dsecenek");
+    var sec1 = document.getElementById("asikki")
+    var sec2 = document.getElementById("bsikki")
+    var sec3 = document.getElementById("csikki")
+    var sec4 = document.getElementById("dsikki")
+    var finish = document.getElementById("bitir");
+    var infolama = document.getElementById("info");
+    var kaydetme = document.getElementById("cevapla");
+    var table = document.getElementById("soru-kisim");
+    var jsonVeri=JSON.stringify(sorularvecevaplari);
+    var veri=JSON.parse(jsonVeri);
+    kaydetme.addEventListener("click",IlerlemeKontrol2);
+var i=0;
+var j=0;
+var puan=0;
+table.innerHTML=veri[0].soru;
+        secenek1.innerHTML=veri[0].asikki;
+        sec1.value = veri[0].asikki;
+        secenek2.innerHTML=veri[0].bsikki;
+        sec2.value = veri[0].bsikki;
+        secenek3.innerHTML=veri[0].csikki;
+        sec3.value = veri[0].csikki;
+        secenek4.innerHTML=veri[0].dsikki;
+        sec4.value = veri[0].dsikki;       
+function Ilerleme()
+{
+    i++;
+        table.innerHTML=veri[i].soru;
+        secenek1.innerHTML=veri[i].asikki;
+        secenek2.innerHTML=veri[i].bsikki;
+        secenek3.innerHTML=veri[i].csikki;
+        secenek4.innerHTML=veri[i].dsikki;  
+        sec1.value=veri[i].asikki;
+        sec2.value=veri[i].bsikki;
+        sec3.value=veri[i].csikki;
+        sec4.value=veri[i].dsikki;           
+}
+function IlerlemeKontrol2()
+{
+    if(sec1.checked==true && sec1.value==veri[j].cevap)
+        {
+                puan=puan+10;
+        }
+        else if (sec2.checked==true && sec2.value==veri[j].cevap)
+        {
+                puan=puan+10;
+        }
+        else if(sec3.checked==true && sec3.value==veri[j].cevap)
+        {  
+                puan=puan+10;
+        }
+        else if(sec4.checked==true && sec4.value == veri[j].cevap)
+        {
+                puan=puan+10; 
+        }
+        j++;
+        Ilerleme(); 
+}
+function PuaniGoruntule ()
+{
+   infolama.innerHTML="Puanınız: " + puan;
+}
+finish.addEventListener("click",PuaniGoruntule);   
+    </script>
+</html>
